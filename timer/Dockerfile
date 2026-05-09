@@ -1,12 +1,13 @@
-FROM php:8.2-apache
+FROM node:18
 
-RUN apt-get update && apt-get install -y \
-    libpng-dev \
-    libjpeg-dev \
-    libfreetype6-dev \
-    && docker-php-ext-configure gd --with-freetype --with-jpeg \
-    && docker-php-ext-install gd
+WORKDIR /app
 
-COPY . /var/www/html/
+COPY package*.json ./
 
-EXPOSE 80
+RUN npm install
+
+COPY . .
+
+EXPOSE 3000
+
+CMD ["npm", "start"]
