@@ -1,0 +1,5 @@
+services:
+  - type: web
+    name: dynamic-email-timer
+    env: docker
+    plan: free
